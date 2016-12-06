@@ -1,11 +1,12 @@
 html, body {
 	font-family: Consolas, monaco, monospace;
-	background-color: #272822;
+	background-color: #eee;
 	color: #F8F8F2;
 }
 
-.container {
-	margin: 50px;
+.flash {
+    line-height: 3em;
+    color: black;
 }
 
 a {
@@ -18,9 +19,9 @@ a:hover {
 }
 
 h1 {
-	color: #F92672;
+	color: red;
 }
 
 h2 {
-	color: #66D9EF;
+	color: blue;
 }

@@ -18,5 +18,13 @@ class DefaultController extends Controller
     public function services() {
         $this->show('services/services');
     }
-
+    public function aPropos() {
+        $this->show('default/apropos');
+    }
+    public function traitement() {
+        echo "<pre>";
+        print_r($_POST);
+        echo "</pre>";
+        $this->show('default/apropos');
+    }
 }
