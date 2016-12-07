@@ -25,8 +25,8 @@ class AdminController extends Controller
         $userdata = $user->insert($data);
         //debug($userdata);
         $userlog->logUserIn($userdata);
-        debug($_SESSION);
-        debug($_SESSION['user']['id']);
+        //debug($_SESSION);
+        //debug($_SESSION['user']['id']);
 
 
     }
@@ -45,7 +45,7 @@ class AdminController extends Controller
         $userdata = $user->find($userid);
         //debug($userdata);
         $userlogin->logUserIn($userdata);
-        debug($_SESSION);
+        //debug($_SESSION);
     }
 
 }
