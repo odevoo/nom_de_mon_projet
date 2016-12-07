@@ -9,5 +9,8 @@
         ['POST', '/contact', 'Contact#traitement', 'contact_traitement'],
         ['GET', '/admin/', 'Admin#home', 'Admin_home'],
         ['POST', '/admin', 'Admin#register', 'admin_register'],
+        ['GET', '/login/', 'Admin#showLogin', 'admin_login'],
+        ['POST', '/adminlogin', 'Admin#login', 'login'],
+
 
 	);
