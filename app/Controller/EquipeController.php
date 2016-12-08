@@ -5,6 +5,7 @@ namespace Controller;
 use \W\Controller\Controller;
 use \W\Model\UsersModel;
 use \Model\SkillsModel;
+use \Model\PagesModel;
 
 class EquipeController extends Controller
 {
@@ -17,12 +18,12 @@ class EquipeController extends Controller
         $rq = new UsersModel;
         $userdata = $rq->find($id);
 
+        /*$rq1 = new PagesModel;
+        $rq1->getPage(1);
+        debug($rq1);*/
 
-        $rqskill  = new SkillsModel;
-        $dataskills = $rqskill->find($id);
+        //$this->getSkills($id);
         
-        debug($dataskills);
-        //debug($userdata);
         $this->show('equipe/profile', ['user' => $userdata]);
     }
     public function showMain() {
@@ -32,5 +33,21 @@ class EquipeController extends Controller
         $this->show('equipe/main' , ['array' => $stmt]);
     }
 
-
+    public function jsonSkills($id) {
+        $rqskill  = new SkillsModel;
+        $dataskills = $rqskill->getSkills($id);
+        $json = $this->showJson($dataskills);
+    }
+    public function modifProfile($id) {
+        $rq = New UsersModel;
+        $user = $rq->find($id);
+        $rqskill  = new SkillsModel;
+        $dataskills = $rqskill->getSkills($id);
+        $this->show('equipe/modif', ['user' => $user, 'skills' => $dataskills]);
+        
+    }
+    public function formModif($id) {
+        debug($id);
+        debug($_POST);
+    }
 }

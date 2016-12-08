@@ -13,6 +13,14 @@
         ['POST', '/adminlogin', 'Admin#login', 'login'],
         ['GET', '/equipe/[i:id]/', 'Equipe#showProfile', 'equipe_profile'],
         ['GET', '/equipe/', 'Equipe#showMain', 'equipe_main'],
+        ['GET|POST', '/equipe/[i:id]/getskills', 'Equipe#jsonSkills', 'equipe_getskills'],
+        ['GET', '/modif/[i:id]', 'Equipe#modifProfile', 'equipe_modif'],
+        ['POST', '/modifprofile/[i:id]', 'Equipe#formModif', 'equipe_formmodif'],
+
+
+
+         ['GET', '/admin/addPage', 'Admin#addPage', 'admin_add_page'],
+         ['GET', '/admin/addPage', 'Admin#addPageBdd', 'admin_add_pagebdd'],
 
 
 

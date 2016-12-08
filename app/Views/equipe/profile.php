@@ -8,6 +8,8 @@
             </a>
         </div>
         <p class="navbar-text navbar-right"><a href="<?= $this->url('equipe_main') ?>" class="navbar-link">Retour</a></p>
+        <p class="navbar-text navbar-right"><a href="<?= $this->url('equipe_modif', ['id' => $user['id']]) ?>" class="navbar-link">Modifier</a></p>
+
     </div>
 </nav>
 <h1 class="text-center">Page de présentation de <?= $user['username'] ?></h1>

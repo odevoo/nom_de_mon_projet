@@ -166,3 +166,8 @@ p{
   margin:0px auto;
   text-align:center;
 }
+
+
+label {
+  font-weight: bold!important;
+}

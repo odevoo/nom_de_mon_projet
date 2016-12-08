@@ -5,6 +5,7 @@ namespace Controller;
 use \W\Controller\Controller;
 use \W\Model\UsersModel;
 use \W\Security\AuthentificationModel;
+use \Model\PagesModel;
 
 class AdminController extends Controller
 {
@@ -47,5 +48,12 @@ class AdminController extends Controller
         $userlogin->logUserIn($userdata);
         //debug($_SESSION);
     }
-
+    public function  addPage() {
+        $this->show('admin/addpage');
+    }
+    public function addPagebdd(){
+        $page = new PagesModel;
+        $page->createPage($_POST);
+        $this->redirectToRoute('admin_add_page');
+    }
 }

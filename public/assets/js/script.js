@@ -1,37 +1,19 @@
 $(function() {
-  //list of skills
-  var skills = {
-                "SQL":{work:80},
-                "PHP":{work:75},
-                "JavaScript":{work:85},
-                "JQuery" :{work:80},
-                "Wordpress":{work:95},
-                "HTML":{work:90},
-                "CSS":{work:95},
-               };
-  
-  
-  
-  displayData(skills);
-  animate();
-  
-  //add new skill
-  $('input:button').click(function(){
-    var name = $('#txtSkill').val(),
-        perc = $('#txtPerc').val();
-    
-    if(name && perc){
-      skills[name] = {work:perc};
-      displayData(skills);
-      animate();
 
-      var newheight = $('.chart').outerHeight() + 50;
-      $('.chart').css('height',newheight);
-    }else{
-      animate();
-    }
-    $('input:text').val('');
-  });
+  $.ajax({
+      url: 'getskills',
+      method: 'POST',
+      dataType: 'json',
+      //data: {'data' : dataJson},
+      success: function(data){
+          
+          //var result = jQuery.parseJSON(data);
+          var result = data;
+          displayData(result); 
+          animate();
+         
+      }
+    });
 });
 
 
@@ -42,11 +24,11 @@ function displayData(skills){
   $('.bars').html('');
   $('.skills').html('');
   for (var key in skills){
-    var personal = skills[key].personal,
-        work = skills[key].work;
+    var personal = skills[key],
+        work = skills[key];
     
     $('.skills').append("<li><span>"+key+"</span></li>");
-    $('.bars').append("<li><div data-percentage='"+skills[key].personal+"' class='bar'>"+personal+"</div><div data-percentage='"+skills[key].work+"' class='bar'>"+work+"</div></li>"); 
+    $('.bars').append("<li><div data-percentage='"+skills[key]+"' class='bar'>"+skills[key]+"</div></li>"); 
     
   };
 }
