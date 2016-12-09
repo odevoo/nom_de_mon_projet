@@ -21,10 +21,10 @@
                 <label for="email">Email</label>
                 <input class="form-control" type="email" name="email" id="email" value="<?php echo $user['email'] ?>" placeholder="">
             </div>
-            <div class="form-group">
+            <!--<div class="form-group">
                 <label for="username">Password</label>
                 <input class="form-control" type="password" name="password" id="password" value="<?php echo $user['password'] ?>" placeholder="">
-            </div>
+            </div>-->
             <div class="form-group">
                 <label for="role">Role</label>
                 <input class="form-control" type="text" name="role" id="role" value="<?php echo $user['role'] ?>" placeholder="">

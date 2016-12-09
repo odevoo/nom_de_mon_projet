@@ -47,7 +47,15 @@ class EquipeController extends Controller
         
     }
     public function formModif($id) {
-        debug($id);
-        debug($_POST);
+        $email = $_POST['email'];
+        $username = $_POST['username'];
+        $role = $_POST['role'];
+        $img = $_POST['img'];
+        $userdata = new UsersModel;
+        $userdata->update(['username' => $username, 'email' => $email, 'role' => $role, 'img' => $img], $id);
+        $userskills = new SkillsModel;
+        $userskills->update(['SQL1' => $_POST['SQL1'], 'PHP' => $_POST['PHP'], 'javascript' => $_POST['javascript'], 'jquery' => $_POST['jquery'], 'wordpress' => $_POST['wordpress'], 'html' => $_POST['html'], 'css' => $_POST['css']], $id);
+        $this->showProfile($id);
+        
     }
 }

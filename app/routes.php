@@ -20,7 +20,9 @@
 
 
          ['GET', '/admin/addPage', 'Admin#addPage', 'admin_add_page'],
-         ['GET', '/admin/addPage', 'Admin#addPageBdd', 'admin_add_pagebdd'],
+         ['POST', '/admin/addPage', 'Admin#addPageBdd', 'admin_add_pagebdd'],
+
+         ['GET', '/page/[:slug]', 'Default#displayPage', 'default_displaypage']
 
 
 

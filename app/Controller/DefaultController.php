@@ -3,6 +3,7 @@
 namespace Controller;
 
 use \W\Controller\Controller;
+use \Model\PagesModel;
 
 class DefaultController extends Controller
 {
@@ -26,5 +27,14 @@ class DefaultController extends Controller
         print_r($_POST);
         echo "</pre>";
         $this->show('default/apropos');
+    }
+    public function displayPage($slug) {
+        $page = new PagesModel;
+        $page->getPageBySlug($slug);
+        if ($page) {
+        $this->show('basique/page', ['contenu_page' => $page]);
+        } else {
+            $this->showNotFound();
+        } 
     }
 }

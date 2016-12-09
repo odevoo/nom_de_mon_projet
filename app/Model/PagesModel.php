@@ -10,6 +10,7 @@ class PagesModel extends \W\Model\Model
     protected $title;
     protected $customdata;
     protected $category;
+    protected $user_id;
     //Récupère les commentaires associés à un article
     public function __construct() {
         //$app = getApp();
@@ -23,6 +24,7 @@ class PagesModel extends \W\Model\Model
         $this->customdata = $page['custom_data'];
         $this->title = $page['title'];
         $this->category = $page['category'];
+        $this->user_id = $page['user_id'];
     }
     public function getPageBySlug($slug) {
         //$app = getApp();
@@ -39,10 +41,38 @@ class PagesModel extends \W\Model\Model
                 $this->customdata = $foundpage['custom_data'];
                 $this->title = $foundpage['title'];
                 $this->category = $foundpage['category'];
+                $this->user_id = $foundpage['user_id'];
+                return true;
+
             }
         }
         return false;
     }
+    public function getPageById($user_id) {
+        //$app = getApp();
+        $sql = 'SELECT * FROM '. $this->table . ' WHERE user_id = :user_id LIMIT 1';
+        //debug($this->dbh);
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindValue(':user_id'. $user_id);
+
+        if ($stmt->execute()) {
+            $foundpage = $stmt->fetch();
+            if ($foundpage) {
+                $this->id = $foundpage['id'];
+                $this->slug = $foundpage['slug'];
+                $this->customdata = $foundpage['custom_data'];
+                $this->title = $foundpage['title'];
+                $this->category = $foundpage['category'];
+                $this->user_id = $foundpage['user_id'];
+
+
+            }
+        }
+        return false;
+    }
+
+
+
     public function getPageTitle() {
         return $this->title;
     }
@@ -51,12 +81,14 @@ class PagesModel extends \W\Model\Model
     }
     public function createPage($page) {
         
-        $this->slug = $this->slugify($page['slug']);
-        $this->customdata = $page['customdata'];
+        $this->slug = $this->slugify($page['title']);
+        $this->customdata = serialize($page['data']);
         $this->title = $page['title'];
         $this->category = $page['category'];
+        $this->user_id = $page['user_id'];
 
-        $this->insert(['title' => $this->title, 'slug' => $this->slug, 'custom_data' => $this->customdata, 'category' => $this->category]);
+        $myPage = $this->insert(['title' => $this->title, 'slug' => $this->slug, 'custom_data' => $this->customdata, 'category' => $this->category, 'user_id' => $this->user_id]);
+        return $myPage;
 
     }
     public function slugify($text)

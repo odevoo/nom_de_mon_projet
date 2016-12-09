@@ -49,11 +49,20 @@ class AdminController extends Controller
         //debug($_SESSION);
     }
     public function  addPage() {
-        $this->show('admin/addpage');
+        $users = new UsersModel;
+        $allUsers = $users->findAll();
+
+        $category = ['basique', 'equipe'];
+
+        //debug($allUsers);
+        $this->show('admin/addpage', ['users' => $allUsers, 'category' => $category]);
     }
     public function addPagebdd(){
         $page = new PagesModel;
-        $page->createPage($_POST);
-        $this->redirectToRoute('admin_add_page');
+        debug($_POST['data']);
+        parse_str($_POST['data'], $parse);
+        debug($parse);
+        $page->createPage($parse);
+        //$this->redirectToRoute('admin_add_page');
     }
 }
